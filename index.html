@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sup</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffd6dc;
+            color: #2b0f14;
+            overflow-x: hidden;
+        }
+
+        .header {
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            background: #8b1e3f;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 40px;
+            gap: 20px;
+        }
+
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        video, img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 12px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            color: #8b1e3f;
+            margin-top: 0;
+        }
+
+        .hero p {
+            color: #5a1a2a;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .heart {
+            position: absolute;
+            top: -20px;
+            color: red;
+            font-size: 20px;
+            animation: fall linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+
+        /* ===== LOCK ===== */
+        .lockscreen {
+            position: fixed;
+            inset: 0;
+            background: #8b1e3f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .box {
+            text-align: center;
+            color: white;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: white;
+            color: #8b1e3f;
+            font-weight: bold;
+        }
+
+        .error {
+            margin-top: 10px;
+            color: #ffb3b3;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2b0f14;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: 0.4s;
+            z-index: 100000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .left, .right {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            video, img {
+                max-width: 45%;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<!-- LOCK SCREEN -->
+<div class="lockscreen" id="lockscreen">
+    <div class="box">
+        <h2>введи пароль</h2>
+        <input type="password" id="pass">
+        <br>
+        <button onclick="check()">войти</button>
+        <div class="error" id="error"></div>
+    </div>
+
+    <audio id="wrongSound" src="mmm/mimo3.mp3"></audio>
+</div>
+
+<!-- МУЗЫКА -->
+<audio id="bgMusic"></audio>
+
+<script>
+let unlocked = false;
+
+function check() {
+    if (unlocked) return;
+
+    let password = document.getElementById("pass").value;
+    let sound = document.getElementById("wrongSound");
+
+    if (password === "Наиля") {
+        unlocked = true;
+        document.getElementById("lockscreen").style.display = "none";
+
+        let music = document.getElementById("bgMusic");
+        music.src = "mmm/police.mp3";
+        music.volume = 0.2;
+        music.play();
+
+    } else {
+        document.getElementById("error").innerText = "почтигой почти";
+        sound.currentTime = 0;
+        sound.play();
+
+        showToast("подсказка имя моей старшей сестры");
+    }
+}
+
+function showToast(text) {
+    let toast = document.getElementById("toast");
+    toast.innerText = text;
+
+    toast.style.top = "20px";
+
+    setTimeout(() => {
+        toast.style.top = "-100px";
+    }, 3000);
+}
+</script>
+
+<div class="header">first page</div>
+
+<div class="container">
+
+    <div class="left">
+        <video autoplay muted loop>
+            <source src="mmm/m.mp4" type="video/mp4">
+        </video>
+
+        <img src="mmm/m8.jpeg">
+
+        <video autoplay muted loop>
+            <source src="mmm/m3.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="hero">
+
+        <h1>Дорогая Мусик</h1>
+
+        <p>Я хз когда ты это читаешь, вообще я сказал 30 апреля, что посмотришь где-то в июне. Но все-таки мне кажется, что читаешь раньше. За два блядских года так и смог поймать общую волну с тобой, хотя обычно с другими это получается намного легче. Как я МОЖЕТ сказал раньше, после того как ты прочитаешь все эту ебату, я не смогу смотреть тебе в глаза, потому что ильяс очко жим жим.</p>
+
+        <p>Сколько бы раз я в тебе не разочаровывался, я постоянно возвращался к тебе. Сколько бы я не убеждался, что эту грешную душу стоит отпустить и забыть, я абсолютно всегда мысленно возвращался к даме по бокам экрана.</p>
+
+        <p>Я даже не знаю почему полюбил тебя. Может сначала было и не понятно, что ты мне нравишься, но нравилась ты мне с самого начала включая первые дни сентября 2024 года. И с тех пор, ты постоянно шла в разрез с моим представлением хорошего ученика, примерной дочери и рациональным мышлением.</p>
+
+        <p>Хотя я вру, я знаю почему любил. Я люблю твои глаза, твою улыбку, твою фигуру, как ты стесняешься, как ты запинаешься, и как не можешь долго держать зрительный контакт. Казалось бы, что такое есть у любой, но почему-то зацепили эти вещи именно у тебя.</p>
+
+        <p>И именно поэтому ужасно стеснялся, в 10 классе весной пока у нас был урок в младшем корпусе я пришел позже всех и свободное место было только рядом с тобой. От стеснения я не просидел и минуты и просто сьебался как мужчина.</p>
+
+        <p>Я очень сильно ревновал, когда ты советовалась со мной на счет козлоеба арсена. Я и так был без ума от тебя, а ты все затирала про какого-то овоща без будущего у которого есть только деньги отца.</p>
+
+        <p>Я очень сильно ревновал, когда ты контактировала с адылжаном или хакимом. А когда ты сама рассказала, что обнималась с хакимом, потому что “чувства вспыхнули”, меня как будто вывернули и завернули обратно. На самом деле до сих пор противно и ревниво вспоминать эту поеботину.</p>
+
+        <p>Ты правда очень красивая и умная, Карина. Поэтому займись собой и своим окружением, эти лицемерные, меркантильные, узко мыслящие люди не стоят твоего потенциала, жан.</p>
+
+        <p>Короче, вот все мои мысли на момент первого мая, чувствую что за оставшееся время я только больше разочаруюсь в тебе, но тем не менее спасибо что занимала мою голову два года.</p>
+
+        <p>И ну конечно, когда ты прочитаешь это, я вряд ли с тобой заговорю еще раз и вряд ли еще раз посмотрю в глаза.</p>
+
+    </div>
+
+    <div class="right">
+        <img src="mmm/m5.jpeg">
+
+        <video autoplay muted loop>
+            <source src="mmm/m7.mp4" type="video/mp4">
+        </video>
+
+        <img src="mmm/m6.jpeg">
+    </div>
+
+</div>
+
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (10 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(createHeart, 100);
+</script>
+
+<hr style="border: none; height: 2px; background-color: black; width: 90%;">
+
+<p style="text-align: right; color: rgba(0,0,0,0.5);">
+    you dont have to check it 
+</p>
+
+<div style="text-align: center; margin-top: -10px;">
+    <a href="indextest.html" style="
+        display: inline-block;
+        text-decoration: none;
+        font-size: 18px;
+        background: #8b1e3f;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+    ">
+        next
+    </a>
+</div>
+
+</body>
+</html>

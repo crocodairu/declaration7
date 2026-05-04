@@ -1,0 +1,143 @@
+.heart {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 0 10px;
+
+  position: absolute;
+  left: 45%; top: 45%;
+
+  background-color: red;
+
+  transform: rotate(-45deg);
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+
+  position: absolute;
+  height: 50px;
+  width: 50px;
+
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -25px;
+  left: 0;
+}
+
+.heart:after {
+  left: 25px;
+  top: 0;
+}
+.center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.link {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: #8b1e3f;
+}
+
+.heart {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 0 10px;
+
+  position: absolute;
+  left: 45%; top: 45%;
+
+  background-color: red;
+
+  transform: rotate(-45deg);
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+
+  position: absolute;
+  height: 50px;
+  width: 50px;
+
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -25px;
+  left: 0;
+}
+
+.heart:after {
+  left: 25px;
+  top: 0;
+}
+.heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+/* само сердце */
+.heart-shape {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: #8b1e3f;
+    transform: rotate(-45deg);
+    animation: pulse 1.2s infinite;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* боковые блоки */
+.left, .right {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* центр */
+.hero {
+    width: 50%;
+    text-align: center;
+}
+
+/* картинки и видео */
+video, img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 12px;
+}
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}

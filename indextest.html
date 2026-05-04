@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>My Page</title>
+
+<style>
+
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    min-height:100vh;
+}
+
+/* 🎵 КОНТРОЛЛЕР МУЗЫКИ */
+.music-box {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 99999;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* 📦 ОБЩИЙ КОНТЕЙНЕР */
+.wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+}
+/* 🔝 ШАПКА */
+.header {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* 🧊 КАРТОЧКИ */
+.card {
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 🧱 СЕТКА */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* 🖼️ МЕДИА */
+.media {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* ❤️ частицы */
+.heart {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 МУЗЫКА + КОНТРОЛЬ -->
+<div class="music-box">
+    <audio id="bgMusic" src="mmm/meu.mp3" loop></audio>
+    <button onclick="toggleMusic()">▶/⏸</button>
+</div>
+
+<div class="wrapper">
+
+    <div class="header">
+        second page
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="mmm/m15.jpeg" class="media">
+            <p>разочарование своих убеждений</p>
+            <img src="mmm/o6.jpeg" class="media">
+        </div>
+
+        <div class="card">
+            <video class="media" autoplay loop muted>
+                <source src="mmm/m14.mp4">
+            </video>
+            <p> и чужих ожиданий. Но даже так ты останешься обладателем самых лучших липсингов, самых милых улыбок и одних из самых навязчивых мыслей, которые ты предпочитаешь глушить гулянками и музыкой нежели работой над собой</p>
+            <img src="mmm/o5.jpeg" class="media">
+        </div>
+
+        <div class="card">
+            <p>обычно когда я думаю о тебе, вылазит обычно только негатив. Но хочешь узнать мои позитивные моменты с тобой? ну поискать немного придется</p>
+            <div class="card">
+
+    <img src="mmm/m16.jpeg" class="media">
+    
+    
+    <a href="mmm/o.jpeg" class="btn">обезьяна</a>
+    <a href="mmm/o1.jpeg" class="btn">красавчик</a>
+     <a href="https://www.tiktok.com/@demolished.croc?_r=1&_t=ZS-965P3XoKhiJ" class="btn">не придумал</a>
+     <a href="mmm/o2.jpeg" class="btn">обезьяны</a>
+     <a href="mmm/o3.jpeg" class="btn">мояшкина</a>
+     <a href="mmm/o4.mp4" class="btn">кнопка</a>
+    <a href="https://t.me/Positivemomentswithmusaeva_bot" class="btn">еще кнопка</a>
+    <a href="https://1drv.ms/w/c/071a9c1e431f9dbd/IQC4__6x59jrRKtHJjYcuT0zAbeEWu5qrpUs7v0pG1Rk_Uw?e=0l8ByR" class="btn">word</a>
+    <a href="mmm/o7.jpeg" class="btn">я люблю тебя</a>
+    <a href="mmm/o8.jpeg" class="btn">ахахахахахах</a>
+</div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// 🎵 КНОПКА МУЗЫКИ
+let music = document.getElementById("bgMusic");
+music.volume = 0.2;
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+// ❤️ + ⭐ частицы
+function createParticle() {
+    const el = document.createElement("div");
+    el.className = "heart";
+
+    if (Math.random() > 0.5) {
+        el.innerHTML = "❤️";
+        el.style.color = "red";
+    } else {
+        el.innerHTML = "⭐";
+        el.style.color = "gold";
+    }
+
+    el.style.left = Math.random() * window.innerWidth + "px";
+    el.style.fontSize = (10 + Math.random() * 25) + "px";
+    el.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 8000);
+}
+
+setInterval(createParticle, 100);
+
+</script>
+
+</body>
+</html>
